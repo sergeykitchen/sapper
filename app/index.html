@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/main.css">
+  <script type="text/javascript" src="scripts/functions.js"></script>
+  <title>Газон заминирован!</title>
+</head>
+<body>
+
+    <div id="game" class="field">
+
+      <button id="newGame"> Новая игра</button>
+      <div class="info">
+        <div id="count" class="count"></div>
+        <div id="stopwatch" class="timer"></div>
+      </div>
+
+    </div>
+
+  <script>
+    const play = (function() {
+      return {
+         get container() {
+           return document.getElementById('game');
+         },
+         get newGame() {
+            return document.getElementById('newGame');
+          },
+         get count() {
+            return document.getElementById('count');
+          },
+         get timer() {
+           return document.getElementById('stopwatch');
+         }
+       }
+    })();
+  </script>
+
+  <script>
+    play.timer.innerHTML = `Ваше время 00:00`;
+
+    // запустить игру
+    sapper.letsPlay();
+    let rememberBombs = sapper.noBombCells;
+
+    play.count.innerHTML = `Осталось ${sapper.flags}`;
+
+    // открывание ячеек
+    play.container.onclick = function(event) {
+      let target = event.target;
+      if(target.tagName != 'TD') return;
+      if(sapper.loose || sapper.win) return;
+      if(!sapper.timerOn)sapper.timeGo();
+      sapper.changeField.call(this, target, sapper.removeColor);
+      play.count.innerHTML = `Осталось ${sapper.flags}`;
+
+    };
+
+    // поставить флажоk
+    play.container.oncontextmenu = function(event) {
+      let target = event.target;
+      if(target.tagName != 'TD') return;
+      sapper.changeField(target, sapper.setFlag);
+      play.count.innerHTML = `Осталось ${sapper.flags}`;
+      return false;
+    };
+
+    // кнопка перезапуска игры
+    newGame.onclick = function(event) {
+      sapper.loose = sapper.win = false;
+      clearTimeout(sapper.timerAnim);
+      play.container.removeChild(sapper.field);
+      if(sapper.message) play.container.removeChild(sapper.message);
+      sapper.field = sapper.message = null;
+      sapper.timeStop();
+      sapper.letsPlay();
+      sapper.strTime = `Ваше время 00:00`;
+      play.count.innerHTML = `Осталось ${sapper.flags}`;
+      play.timer.innerHTML = sapper.strTime;
+      event.stopPropagation();
+    };
+    // не выделяемый контейнер
+    play.container.onmousedown = function() {
+       return false;
+    };
+
+  </script>
+</body>
+</html>

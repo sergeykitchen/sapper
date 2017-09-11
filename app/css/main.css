@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  background-color: #ebedb1; }
+
+#game {
+  position: relative;
+  width: 330px;
+  cursor: default;
+  margin: 20px auto; }
+
+table {
+  margin: 10px auto;
+  border-collapse: collapse;
+  background: url("../grass.jpg"); }
+
+td {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold; }
+
+.cell {
+  border: 2px solid #092101; }
+
+.bomb {
+  background: url("../poop.png") center no-repeat;
+  background-size: cover; }
+
+.close {
+  background-color: transparent;
+  border: 2px solid #092101;
+  box-shadow: inset -1px -1px 5px #1e2a37; }
+
+.isOpen {
+  background-color: #6dc331;
+  border: 2px solid #1d4703;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box; }
+
+button {
+  display: block;
+  background-color: #50b61a;
+  margin: 5px auto;
+  color: #FFF;
+  padding: 4px; }
+
+.count, .timer {
+  color: #2c1d75; }
+
+.info {
+  display: flex;
+  justify-content: space-between; }
+
+.message {
+  font-size: 20px;
+  color: #113162;
+  background-color: #f40f0f;
+  position: absolute;
+  padding: 5px;
+  box-shadow: 1px 1px 5px black;
+  border-radius: 3px;
+  z-index: 99; }

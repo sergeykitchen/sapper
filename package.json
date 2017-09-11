@@ -1,0 +1,17 @@
+{
+  "name": "work",
+  "version": "1.0.0",
+  "description": "my first time",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "serun",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-env": "^1.5.1",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}
