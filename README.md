@@ -1,1 +1,1 @@
-Сапер в ES6
+Sapper game
